@@ -1,0 +1,117 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#070B14;font-family:'Inter',sans-serif;color:#fff}
+#bgglow{position:absolute;inset:0;background:radial-gradient(900px 700px at 85% 8%,rgba(31,79,216,.40),transparent 60%),radial-gradient(800px 700px at 0% 70%,rgba(14,148,136,.14),transparent 60%),linear-gradient(180deg,#0A1020 0%,#070B14 100%)}
+#grain{position:absolute;inset:0;opacity:.07;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.5) 0 1px,transparent 1px 3px)}
+#pill{position:absolute;left:60px;top:150px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:30px;letter-spacing:.14em;color:#BFD0FF}
+#pill i{display:block;width:14px;height:14px;border-radius:50%;background:#3B6FF5;box-shadow:0 0 18px #3B6FF5}
+#kicker{position:absolute;left:60px;top:228px;font-weight:700;font-size:30px;letter-spacing:.18em;color:#7C8AA8}
+#t1{position:absolute;left:60px;top:272px;font-weight:800;font-size:112px;line-height:1.02;letter-spacing:-.025em}
+#t1 span{background:linear-gradient(90deg,#fff,#BFD0FF);-webkit-background-clip:text;color:transparent}
+#t2{position:absolute;left:60px;top:402px;font-weight:600;font-size:48px;color:#8FA4D6;letter-spacing:-.01em}
+.row{position:absolute;left:60px;width:960px;height:172px;will-change:transform}
+.name{position:absolute;left:112px;top:0;font-weight:700;font-size:34px;letter-spacing:.02em;color:#C9D3EA}
+.track{position:absolute;left:0;top:52px;width:960px;height:104px;border-radius:52px;background:rgba(255,255,255,.055);box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.bar{position:absolute;left:0;top:52px;height:104px;border-radius:52px;overflow:hidden}
+.bar::after{content:"";position:absolute;left:0;right:0;top:0;height:46%;background:linear-gradient(180deg,rgba(255,255,255,.34),rgba(255,255,255,0))}
+.bar::before{content:"";position:absolute;top:0;bottom:0;width:140px;left:var(--sh,-200px);background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg)}
+.icon{position:absolute;left:0;top:34px;width:140px;height:140px}
+.val{position:absolute;top:52px;height:104px;line-height:104px;font-weight:800;font-size:56px;letter-spacing:-.02em;white-space:nowrap}
+.rank{position:absolute;right:0;top:0;font-weight:800;font-size:28px;color:#5B6B8F}
+#co{position:absolute;left:60px;top:1230px;width:960px;height:120px}
+.chip{position:absolute;left:0;top:0;width:960px;height:112px;padding:0 36px 0 30px;border-radius:30px;display:flex;align-items:center;gap:22px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14);backdrop-filter:blur(8px);font-weight:700;font-size:40px;letter-spacing:-.01em;opacity:0}
+.chip b{font-weight:800;font-size:44px;padding:8px 20px;border-radius:16px;background:#fff;color:#0B1220}
+.chip em{font-style:normal;color:#fff}
+#yr{position:absolute;left:52px;top:1370px;font-weight:800;font-size:250px;line-height:1;letter-spacing:-.05em;background:linear-gradient(180deg,#fff,#5B79C9);-webkit-background-clip:text;color:transparent}
+#yrlab{position:absolute;right:60px;top:1470px;text-align:right;font-weight:600;font-size:30px;line-height:1.35;color:#7C8AA8}
+#tl{position:absolute;left:60px;top:1655px;width:960px;height:8px;border-radius:4px;background:rgba(255,255,255,.1)}
+#tlf{position:absolute;left:0;top:0;height:8px;border-radius:4px;background:linear-gradient(90deg,#1F4FD8,#7AA2FF)}
+#tld{position:absolute;top:-10px;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 0 0 6px rgba(59,111,245,.35),0 0 30px #3B6FF5}
+.tk{position:absolute;top:34px;font-weight:600;font-size:24px;color:#6C7A9C;transform:translateX(-50%)}
+#src{position:absolute;left:60px;top:1745px;width:960px;font-weight:500;font-size:23px;line-height:1.4;color:#5F6D8F}
+#end{position:absolute;left:60px;top:1230px;width:960px;display:flex;gap:18px;opacity:0}
+.mx{flex:1;border-radius:28px;padding:22px 24px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14)}
+.mx small{display:block;font-weight:700;font-size:24px;letter-spacing:.14em;color:#8FA4D6;margin-bottom:6px}
+.mx strong{font-weight:800;font-size:64px;letter-spacing:-.03em}
+</style></head><body>
+<div id="bgglow"></div><div id="grain"></div>
+<div id="pill"><i></i>CHART2DAY</div>
+<div id="kicker">INDIA · SINCE 2005</div>
+<div id="t1"><span>₹1 lakh in 2005.</span></div>
+<div id="t2">What is it worth today?</div>
+<div id="rows"></div>
+<div id="co"></div>
+<div id="end"></div>
+<div id="yr">2005</div>
+<div id="yrlab">year-end close<br>(gold: yearly avg)</div>
+<div id="tl"><div id="tlf"></div><div id="tld"></div></div>
+<div id="src">Source: BSE, NSE year-end closes; gold = average 24K price per 10 g (2026: spot, 29 Jun). 2026 equities as of 23 Oct. Indicative, pre-tax. Not investment advice.</div>
+<script>
+const yrs=[];for(let y=2005;y<=2026;y++)yrs.push(y);
+const sensex=[9397.93,13786.91,20286.99,9647.31,17464.81,20509.09,15454.92,19426.71,21170.68,27499.42,26117.54,26626.46,34056.83,36068.33,41253.74,47751.33,58253.82,60840.74,72240.26,78139.01,85220.60,73123.83];
+const nifty=[2836.55,3966.40,6138.60,2959.15,5201.05,6134.50,4624.30,5905.10,6304.00,8282.70,7946.35,8185.80,10530.70,10862.55,12168.45,13981.75,17354.05,18105.30,21731.40,23644.80,26129.60,22600.00];
+const gold=[7000,8400,9428,12361,15417,18448,24130,29926,28848,27708,26671,30128,29174,30692,35154,47562,47437,51249,58836,77000,133195,143020];
+const S=[
+ {n:"Gold",v:gold.map(x=>1e5*x/gold[0]),c1:"#FFD35A",c2:"#C98A12",glow:"255,196,60",vt:"#1A1200",icon:`<svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="62" fill="#17120A" stroke="rgba(255,205,90,.55)" stroke-width="3"/><path d="M34 88 46 66h48l12 22z" fill="#F8C146"/><path d="M46 66l8-16h32l8 16z" fill="#FFE08A"/><path d="M52 98 62 80h16l10 18z" fill="#D99A1E" transform="translate(4 -6)"/><path d="M34 88h72l-4 10H38z" fill="#B97A10"/></svg>`},
+ {n:"Sensex",v:sensex.map(x=>1e5*x/sensex[0]),c1:"#6E9BFF",c2:"#1F4FD8",glow:"59,111,245",vt:"#fff",icon:`<svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="62" fill="#0C1530" stroke="rgba(122,162,255,.6)" stroke-width="3"/><g fill="#7AA2FF"><rect x="38" y="78" width="12" height="26" rx="3"/><rect x="58" y="62" width="12" height="42" rx="3"/><rect x="78" y="48" width="12" height="56" rx="3"/><rect x="98" y="38" width="12" height="66" rx="3" fill="#fff"/></g></svg>`},
+ {n:"Nifty 50",v:nifty.map(x=>1e5*x/nifty[0]),c1:"#5EEAD4",c2:"#0E9488",glow:"45,212,191",vt:"#04211E",icon:`<svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="62" fill="#061C1B" stroke="rgba(94,234,212,.6)" stroke-width="3"/><path d="M34 98l22-26 18 14 32-38" fill="none" stroke="#5EEAD4" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M96 48h20v20" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
+];
+const T0=1.5,STEP=0.5,N=yrs.length,TEND=T0+STEP*(N-1),TOTAL=TEND+3.6;
+const sm=x=>{x=Math.max(0,Math.min(1,x));return x*x*(3-2*x)};
+const out=x=>1-Math.pow(1-Math.max(0,Math.min(1,x)),3);
+const val=(a,u)=>{u=Math.max(0,Math.min(a.length-1,u));const i=Math.floor(u);if(i>=a.length-1)return a[a.length-1];return a[i]+(a[i+1]-a[i])*sm(u-i)};
+const rows=document.getElementById('rows');
+S.forEach((s,k)=>{const r=document.createElement('div');r.className='row';
+ r.innerHTML=`<div class="name">${s.n}</div><div class="track"></div><div class="bar" style="background:linear-gradient(90deg,${s.c2},${s.c1});box-shadow:0 0 50px rgba(${s.glow},.38),0 10px 30px rgba(0,0,0,.45)"></div><div class="val" style="color:#fff"></div><div class="rank"></div><div class="icon">${s.icon}</div>`;
+ rows.appendChild(r);s.el=r;s.bar=r.querySelector('.bar');s.val=r.querySelector('.val');s.rank=r.querySelector('.rank');});
+const CO=[
+ {i:3,t:"2008",d:"Global crisis · Sensex",b:"−52.4%",len:.98},
+ {i:4,t:"2009",d:"Rebound · Sensex",b:"+81.0%",len:1.0},
+ {i:20,t:"2025",d:"Gold average price",b:"+73%",len:1.2},
+ {i:21,t:"2026",d:"Sensex so far",b:"−14.2%",len:1.7}];
+const coEl=document.getElementById('co');
+CO.forEach(c=>{const e=document.createElement('div');e.className='chip';e.innerHTML=`<b>${c.t}</b><em>${c.d}</em><span style="margin-left:auto;font-weight:800;font-size:52px;color:${c.b.startsWith('+')?'#5EEAD4':'#FF6B70'}">${c.b}</span>`;c.el=e;coEl.appendChild(e)});
+const tl=document.getElementById('tl');
+[2005,2010,2015,2020,2026].forEach(y=>{const d=document.createElement('div');d.className='tk';d.textContent=y;d.style.left=((y-2005)/21*960)+'px';tl.appendChild(d)});
+const endEl=document.getElementById('end');
+function setEnd(){const lab=["Gold","Nifty 50","Sensex"],mult=[S[0],S[2],S[1]].map(s=>s.v[N-1]/1e5);
+ endEl.innerHTML=mult.map((m,i)=>`<div class="mx"><small>${lab[i].toUpperCase()}</small><strong>${m.toFixed(1)}x</strong></div>`).join('');}
+setEnd();
+function setT(t){
+ const u=(t-T0)/STEP;
+ // intro
+ const ti=out(t/0.8);
+ ['pill','kicker','t1','t2'].forEach((id,j)=>{const e=document.getElementById(id);const p=out((t-0.08*j)/0.7);e.style.opacity=p;e.style.transform=`translateY(${(1-p)*30}px)`});
+ const vals=S.map(s=>val(s.v,u));
+ const mx=Math.max(...vals)*1.10;
+ S.forEach((s,k)=>{
+  let rank=0;vals.forEach((o,j)=>{if(j!==k)rank+=Math.max(0,Math.min(1,(o-vals[k])/(0.004*mx)+0.5))});
+  const rp=out((t-0.5-0.12*k)/0.7);
+  s.el.style.transform=`translateY(${640+rank*198+(1-rp)*80}px)`;s.el.style.opacity=rp;
+  const w=Math.max(120,960*vals[k]/mx);
+  s.bar.style.width=w+'px';
+  s.bar.style.setProperty('--sh',((t*400+k*300)%1600-250)+'px');
+  const txt='₹'+(vals[k]/1e5).toFixed(1)+' L';
+  s.val.textContent=txt;
+  if(w>420){s.val.style.left=(w-30)+'px';s.val.style.transform='translateX(-100%)';s.val.style.color=s.vt}
+  else{s.val.style.left=(w+22)+'px';s.val.style.transform='none';s.val.style.color='#fff'}
+  s.rank.textContent='#'+(Math.round(rank)+1);
+ });
+ // year
+ const yi=Math.max(0,Math.min(N-1,Math.round(u)));
+ document.getElementById('yr').textContent=yrs[yi];
+ const prog=Math.max(0,Math.min(1,u/(N-1)));
+ document.getElementById('tlf').style.width=(prog*960)+'px';
+ const dot=document.getElementById('tld');dot.style.left=(prog*960-14)+'px';
+ // callouts: only the most recent chip shows
+ let act=-1;CO.forEach((c,j)=>{if(t>=T0+STEP*c.i-0.05)act=j});
+ CO.forEach((c,j)=>{let o=0,x=0;
+  if(j===act){const p=t-(T0+STEP*c.i-0.05);const endAt=(j<CO.length-1)?Math.min(c.len,STEP*(CO[j+1].i-c.i)-0.05):c.len;
+   o=Math.min(out(p/0.3),1-sm((p-endAt)/0.25));x=(1-out(p/0.3))*70}
+  c.el.style.opacity=Math.max(0,o);c.el.style.transform=`translateX(${x}px)`});
+ const ep=out((t-(TEND+1.9))/0.5);endEl.style.opacity=ep;endEl.style.transform=`translateY(${(1-ep)*30}px)`;
+ // final: hold subtle pulse on gold bar glow
+}
+setT(0);
+</script></body></html>

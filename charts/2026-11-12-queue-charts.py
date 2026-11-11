@@ -45,6 +45,6 @@ fig,ax,C=frame(False,"India has passed China.\nThe gap is growing.",f"Population
 ax.plot(Y,Cn,color="#E5484D",lw=3.4); ax.plot(Y,I,color=C["COB"],lw=3.4)
 ax.text(Y[-1]+.8,I[-1]+.03,f"India\n{I[-1]:.2f}bn",fontsize=15,fontweight="bold",color=C["COB"],va="center",clip_on=False); ax.text(Y[-1]+.8,Cn[-1]-.04,f"China\n{Cn[-1]:.2f}bn",fontsize=15,fontweight="bold",color="#E5484D",va="center",clip_on=False)
 ci=Y.index(cross); ax.scatter([cross],[I[ci]],color=C["INK"],s=70,zorder=6); ax.annotate("India moves\nahead",(cross,I[ci]),(cross-14,1.52),fontsize=15,fontweight="bold",color=C["INK"],ha="center",va="center",arrowprops=dict(arrowstyle="-",color=C["GREY"],lw=1))
-ax.text(Y[0]+1,I[0]-.06,f"{I[0]:.2f}bn",fontsize=14,fontweight="bold",color=C["COB"],va="top"); ax.text(Y[0]+1,Cn[0]+.06,f"{Cn[0]:.2f}bn",fontsize=14,fontweight="bold",color="#E5484D",va="bottom")
+ax.text(Y[0]+1,I[0]-.06,f"{I[0]:.2f}bn",fontsize=14,fontweight="bold",color=C["COB"],va="top"); ax.text(Y[0]+1,Cn[0]+.11,f"{Cn[0]:.2f}bn",fontsize=14,fontweight="bold",color="#E5484D",va="bottom")
 ax.set_xlim(Y[0],Y[-1]); ax.set_ylim(0.3,1.6); ax.yaxis.set_major_formatter(lambda v,_:f"{v:.1f}bn"); ax.set_xticks([1960,1973,1986,1999,2012,2025])
 fig.savefig("2026-11-14-india-china-population.png",facecolor=C["BG"]); plt.close(fig)
